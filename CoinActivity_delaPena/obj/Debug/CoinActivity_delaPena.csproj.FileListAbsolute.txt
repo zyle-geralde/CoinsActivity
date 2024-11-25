@@ -1,0 +1,10 @@
+C:\Users\saylo\OneDrive\Desktop\CSharpVisualStudio\IntelligentSystems1\CoinActivity_delaPena\CoinActivity_delaPena\bin\Debug\CoinActivity_delaPena.exe.config
+C:\Users\saylo\OneDrive\Desktop\CSharpVisualStudio\IntelligentSystems1\CoinActivity_delaPena\CoinActivity_delaPena\bin\Debug\CoinActivity_delaPena.exe
+C:\Users\saylo\OneDrive\Desktop\CSharpVisualStudio\IntelligentSystems1\CoinActivity_delaPena\CoinActivity_delaPena\bin\Debug\CoinActivity_delaPena.pdb
+C:\Users\saylo\OneDrive\Desktop\CSharpVisualStudio\IntelligentSystems1\CoinActivity_delaPena\CoinActivity_delaPena\obj\Debug\CoinActivity_delaPena.csproj.AssemblyReference.cache
+C:\Users\saylo\OneDrive\Desktop\CSharpVisualStudio\IntelligentSystems1\CoinActivity_delaPena\CoinActivity_delaPena\obj\Debug\CoinActivity_delaPena.Form1.resources
+C:\Users\saylo\OneDrive\Desktop\CSharpVisualStudio\IntelligentSystems1\CoinActivity_delaPena\CoinActivity_delaPena\obj\Debug\CoinActivity_delaPena.Properties.Resources.resources
+C:\Users\saylo\OneDrive\Desktop\CSharpVisualStudio\IntelligentSystems1\CoinActivity_delaPena\CoinActivity_delaPena\obj\Debug\CoinActivity_delaPena.csproj.GenerateResource.cache
+C:\Users\saylo\OneDrive\Desktop\CSharpVisualStudio\IntelligentSystems1\CoinActivity_delaPena\CoinActivity_delaPena\obj\Debug\CoinActivity_delaPena.csproj.CoreCompileInputs.cache
+C:\Users\saylo\OneDrive\Desktop\CSharpVisualStudio\IntelligentSystems1\CoinActivity_delaPena\CoinActivity_delaPena\obj\Debug\CoinActivity_delaPena.exe
+C:\Users\saylo\OneDrive\Desktop\CSharpVisualStudio\IntelligentSystems1\CoinActivity_delaPena\CoinActivity_delaPena\obj\Debug\CoinActivity_delaPena.pdb
