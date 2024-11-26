@@ -55,7 +55,7 @@ namespace CoinActivity_delaPena
                 return;
             }
             initializeTotals();
-            GetCoinPixels(processed,ref TotalCoins,ref TotalAmount,ref Total5P,ref Total1P,ref Total25C,ref Total10C,ref Total5C);
+            AnalyzeCoinsPixels(processed,ref TotalCoins,ref TotalAmount,ref Total5P,ref Total1P,ref Total25C,ref Total10C,ref Total5C);
             assignTotals();
         }
 
@@ -63,128 +63,117 @@ namespace CoinActivity_delaPena
         {
             if (loaded == null)
                 return;
-
-            Bitmap binaryImage = new Bitmap(loaded.Width, loaded.Height);
-            int threshold = 180;
-
-            for (int x = 0; x < loaded.Width; ++x)
+            Bitmap bImage = new Bitmap(loaded.Width,loaded.Height);
+            int thres = 180;
+            for (int x= 0; x<loaded.Width; ++x)
             {
-                for (int y = 0; y < loaded.Height; ++y)
+                for (int y =0; y< loaded.Height; ++y)
                 {
                     Color pixel = loaded.GetPixel(x, y);
-                    int grayscale = (pixel.R + pixel.G + pixel.B) / 3;
-                    binaryImage.SetPixel(x, y, grayscale < threshold ? Color.Black : Color.White);
+                    int grayscale = (pixel.R +pixel.G +pixel.B)/3;
+                    bImage.SetPixel(x,y,grayscale <thres?Color.Black:Color.White);
                 }
             }
-
-            processed = binaryImage;
-
+            processed = bImage;
             pictureBox2.Image = processed;
         }
 
-        public static void GetCoinPixels(Bitmap image,ref int totalCount,ref float totalValue,ref int peso5Count,ref int peso1Count,ref int cent25Count,ref int cent10Count,ref int cent5Count)
+        public static void AnalyzeCoinsPixels(Bitmap img,ref int totalCount,ref float totalAmount,ref int p5Count,ref int p1Count,ref int c25Count,ref int c10Count,ref int c5Count)
         {
-            bool[,] seen = InitializeSeenMatrix(image.Width, image.Height);
-            List<int> regionSizes = IdentifyRegions(image, seen);
+            bool[,] seen= VisitedMatrix(img.Width,img.Height);
+            List<int>regionSizes=IdentifyRegions(img,seen);
 
-            ProcessRegions(regionSizes,ref totalCount,ref totalValue,ref peso5Count,ref peso1Count,ref cent25Count,ref cent10Count,ref cent5Count);
+            ProcessRegions(regionSizes,ref totalCount,ref totalAmount, ref p5Count,ref p1Count,ref c25Count,ref c10Count,ref c5Count);
 
 
         }
-        private static bool[,] InitializeSeenMatrix(int width, int height)
+        private static bool[,] VisitedMatrix(int w,int h)
         {
-            return new bool[width, height];
+            return new bool[w,h];
         }
 
-        private static List<int> IdentifyRegions(Bitmap image, bool[,] seen)
+        private static List<int> IdentifyRegions(Bitmap img, bool[,] visited)
         {
-            List<int> regionSizes = new List<int>();
+            List<int> regSizes = new List<int>();
 
-            for (int x = 0; x < image.Width; x++)
+            for (int x=0;x<img.Width;x++)
             {
-                for (int y = 0; y < image.Height; y++)
+                for (int y =0; y<img.Height; y++)
                 {
-                    if (seen[x, y] || image.GetPixel(x, y).R != 0)
+                    if (visited[x,y] ||img.GetPixel(x,y).R != 0)
                         continue;
 
-                    int regionSize = CalculateRegionSize(image, x, y, seen);
-
-                    if (regionSize >= 800)
+                    int cregSize = CalculateRegSize(img, x,y,visited);
+                    if (cregSize >= 800)
                     {
-                        regionSizes.Add(regionSize);
+                        regSizes.Add(cregSize);
                     }
                 }
             }
-
-            return regionSizes;
+            return regSizes;
         }
 
-        private static int CalculateRegionSize(Bitmap image, int startX, int startY, bool[,] visited)
+        private static int CalculateRegSize(Bitmap img, int strtX, int strtY, bool[,] visited)
         {
-            Stack<(int x, int y)> stack = new Stack<(int x, int y)>();
-            stack.Push((startX, startY));
+            Stack<(int x,int y)> stack =new Stack<(int x,int y)>();
+            stack.Push((strtX, strtY));
+            int regSize = 0;
 
-            int regionSize = 0;
-
-            while (stack.Count > 0)
+            while (stack.Count >0)
             {
                 var (x, y) = stack.Pop();
-                if (x < 0 || y < 0 || x >= image.Width || y >= image.Height || visited[x, y])
+                if (x <0 ||y<0||x>=img.Width||y >= img.Height||visited[x,y])
                     continue;
-                visited[x, y] = true;
-
-                if (image.GetPixel(x, y).R != 0)
+                visited[x,y] = true;
+                if (img.GetPixel(x, y).R != 0)
                     continue;
 
-                regionSize++;
-
+                regSize++;
                 stack.Push((x - 1, y));
                 stack.Push((x + 1, y));
                 stack.Push((x, y - 1));
                 stack.Push((x, y + 1));
             }
-
-            return regionSize;
+            return regSize;
         }
 
-        private static void ProcessRegions(List<int> regionSizes,ref int totalCount,ref float totalValue,ref int peso5Count,ref int peso1Count,ref int cent25Count,ref int cent10Count,ref int cent5Count)
+        private static void ProcessRegions(List<int> regSizes,ref int totalCount,ref float totalAmount,ref int p5Count,ref int p1Count,ref int c25Count,ref int c10Count,ref int c5Count)
         {
-            int localPeso5Count = peso5Count;
-            int localPeso1Count = peso1Count;
-            int localCent25Count = cent25Count;
-            int localCent10Count = cent10Count;
-            int localCent5Count = cent5Count;
+            int localPeso5Count = p5Count;
+            int localPeso1Count = p1Count;
+            int localCent25Count = c25Count;
+            int localCent10Count = c10Count;
+            int localCent5Count = c5Count;
 
             
-            var coinClassification = new List<(int MinSize, float Value, Action)>
+            var coinClassification = new List<(int minsize,float value,Action)>
             {
-                (6800, 5.0f, new Action(() => localPeso5Count++)),   
-                (4800, 1.0f, new Action(() => localPeso1Count++)),  
-                (3800, 0.25f, new Action(() => localCent25Count++)),
-                (2800, 0.10f, new Action(() => localCent10Count++)),
-                (800, 0.05f, new Action(() => localCent5Count++))   
+                (6800,5.0f,new Action(()=>localPeso5Count++)),   
+                (4800,1.0f,new Action(()=>localPeso1Count++)),  
+                (3800,0.25f,new Action(()=>localCent25Count++)),
+                (2800,0.10f,new Action(()=>localCent10Count++)),
+                (800,0.05f,new Action(()=>localCent5Count++))   
             };
 
-            foreach (int size in regionSizes)
+            foreach (int size in regSizes)
             {
-                foreach (var (MinSize, Value, Increment) in coinClassification)
+                foreach (var(minsize,value,Increment) in coinClassification)
                 {
-                    if (size > MinSize)
+                    if (size >minsize)
                     {
                         Increment();             
-                        totalValue += Value;     
+                        totalAmount+= value;     
                         totalCount++;  
                         break;                   
                     }
                 }
             }
-
             
-            peso5Count = localPeso5Count;
-            peso1Count = localPeso1Count;
-            cent25Count = localCent25Count;
-            cent10Count = localCent10Count;
-            cent5Count = localCent5Count;
+            p5Count = localPeso5Count;
+            p1Count = localPeso1Count;
+            c25Count = localCent25Count;
+            c10Count = localCent10Count;
+            c5Count = localCent5Count;
 
         }
         private void assignTotals()

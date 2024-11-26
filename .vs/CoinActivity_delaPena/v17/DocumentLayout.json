@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{13D1CB58-6E08-4690-82F6-9EA49D5E5265}|CoinActivity_delaPena\\CoinActivity_delaPena.csproj|solutionrelative:coinactivity_delapena\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13D1CB58-6E08-4690-82F6-9EA49D5E5265}|CoinActivity_delaPena\\CoinActivity_delaPena.csproj|c:\\users\\saylo\\onedrive\\desktop\\csharpvisualstudio\\intelligentsystems1\\coinactivity_delapena\\coinactivity_delapena\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{13D1CB58-6E08-4690-82F6-9EA49D5E5265}|CoinActivity_delaPena\\CoinActivity_delaPena.csproj|C:\\Users\\saylo\\OneDrive\\Desktop\\CSharpVisualStudio\\IntelligentSystems1\\CoinActivity_delaPena\\coinactivity_delapena\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{13D1CB58-6E08-4690-82F6-9EA49D5E5265}|CoinActivity_delaPena\\CoinActivity_delaPena.csproj|solutionrelative:coinactivity_delapena\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "CoinActivity_delaPena\\Form1.cs",
               "ToolTip": "C:\\Users\\saylo\\OneDrive\\Desktop\\CSharpVisualStudio\\IntelligentSystems1\\CoinActivity_delaPena\\CoinActivity_delaPena\\Form1.cs",
               "RelativeToolTip": "CoinActivity_delaPena\\Form1.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAuwFIAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAAAkwKUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-25T15:34:58.249Z",
               "EditorCaption": ""
@@ -42,8 +42,7 @@
               "ToolTip": "C:\\Users\\saylo\\OneDrive\\Desktop\\CSharpVisualStudio\\IntelligentSystems1\\CoinActivity_delaPena\\CoinActivity_delaPena\\Form1.cs [Design]",
               "RelativeToolTip": "CoinActivity_delaPena\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T15:06:46.392Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-11-25T15:06:46.392Z"
             }
           ]
         }
